@@ -80,15 +80,15 @@ const TableList = () => {
   const actionRef = useRef();
   const columns = [
     {
-      title: '规则名称',
+      title: 'GroupID',
       dataIndex: 'name',
     },
     {
-      title: '描述',
+      title: '用户组名称',
       dataIndex: 'desc',
     },
     {
-      title: '服务调用次数',
+      title: '状态',
       dataIndex: 'callNo',
       sorter: true,
       renderText: val => `${val} 万`,
@@ -127,16 +127,17 @@ const TableList = () => {
       valueType: 'option',
       render: (_, record) => (
         <>
-          <a
+          <Button
             onClick={() => {
               handleUpdateModalVisible(true);
               setStepFormValues(record);
             }}
+            type="primary"
           >
             配置
-          </a>
+          </Button>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          <Button shape="round" type="dashed" danger="true">订阅警报</Button>
         </>
       ),
     },
