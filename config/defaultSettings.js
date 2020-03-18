@@ -11,7 +11,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'PlayForMe',
+  title: 'PlAYForme',
   pwa: false,
   iconfontUrl: '',
 };
