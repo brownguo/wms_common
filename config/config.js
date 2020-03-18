@@ -7,7 +7,7 @@ const { pwa } = defaultSettings; // preview.pro.ant.design only do not use in yo
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
 
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION, REACT_APP_ENV } = process.env;
-const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
+
 const plugins = [
   ['umi-plugin-antd-icon-config', {}],
   [
@@ -37,12 +37,7 @@ const plugins = [
               importWorkboxFrom: 'local',
             },
           }
-        : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
-      // dll features https://webpack.js.org/plugins/dll-plugin/
-      // dll: {
-      //   include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-      //   exclude: ['@babel/runtime', 'netlify-lambda'],
-      // },
+        : false
     },
   ],
   [
@@ -291,11 +286,32 @@ export default {
                 },
               ],
             },
+
             {
               path: '/',
               redirect: '/dashboard/analysis',
               authority: ['admin', 'user'],
             },
+            {
+              name: 'configure',
+              icon: 'SettingOutlined',
+              path: '/configure',
+              routes: [
+                {
+                  name: 'create-user',
+                  icon: 'UserOutlined',
+                  path: '/configure/create-user',
+                  component: './configure/create-user',
+                },
+                {
+                  name: 'setting-user-group',
+                  icon: 'UsergroupAddOutlined',
+                  path: '/configure/setting-user-group',
+                  component: './configure/setting-user-group',
+                },
+              ],
+            },
+
             {
               component: '404',
             },
@@ -304,7 +320,6 @@ export default {
       ],
     },
   ],
-  // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: {
     // ...darkTheme,
     'primary-color': defaultSettings.primaryColor,

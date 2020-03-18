@@ -11,7 +11,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'wms_operation_admin',
+  title: 'PlayForMe',
   pwa: false,
   iconfontUrl: '',
 };
