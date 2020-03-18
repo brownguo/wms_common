@@ -292,6 +292,20 @@ export default {
               redirect: '/dashboard/analysis',
               authority: ['admin', 'user'],
             },
+
+            {
+              name: 'orders',
+              icon: 'OrderedListOutlined',
+              path: '/orders',
+              routes: [
+                {
+                  name: 'all-list',
+                  icon: 'MoneyCollectOutlined',
+                  path: '/orders/all-list',
+                  component: './orders/all-list',
+                },
+              ],
+            },
             {
               name: 'configure',
               icon: 'SettingOutlined',

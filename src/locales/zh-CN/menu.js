@@ -49,4 +49,7 @@ export default {
   'menu.configure':'系统设置',
   'menu.configure.create-user':'管理员设置',
   'menu.configure.setting-user-group':'用户组设置',
+
+  'menu.orders':'订单管理',
+  'menu.orders.all-list':'订单列表'
 };
