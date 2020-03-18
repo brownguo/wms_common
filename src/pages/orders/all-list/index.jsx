@@ -80,7 +80,7 @@ const TableList = () => {
   const actionRef = useRef();
   const columns = [
     {
-      title: 'GroupID',
+      title: '订单ID',
       dataIndex: 'name',
     },
     {
@@ -88,7 +88,7 @@ const TableList = () => {
       dataIndex: 'desc',
     },
     {
-      title: '状态',
+      title: '金额',
       dataIndex: 'callNo',
       sorter: true,
       renderText: val => `${val} 万`,
