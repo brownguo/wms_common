@@ -11,7 +11,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: 'wms_operation_admin',
   pwa: false,
   iconfontUrl: '',
 };
