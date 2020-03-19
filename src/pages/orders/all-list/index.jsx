@@ -1,5 +1,5 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Dropdown, Menu, message } from 'antd';
+import { Button, Divider, Dropdown, Menu, message, Tag} from 'antd';
 import React, { useState, useRef } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
@@ -81,11 +81,15 @@ const TableList = () => {
   const columns = [
     {
       title: '订单ID',
-      dataIndex: 'name',
+      dataIndex: 'order_id',
     },
     {
-      title: '用户组名称',
-      dataIndex: 'desc',
+      title: '姓名',
+      dataIndex: 'username',
+    },
+    {
+      title: '手机号',
+      dataIndex: 'mobile_phone',
     },
     {
       title: '金额',
@@ -94,32 +98,44 @@ const TableList = () => {
       renderText: val => `${val} 万`,
     },
     {
-      title: '状态',
+      title: '订单状态',
       dataIndex: 'status',
       valueEnum: {
         0: {
-          text: '关闭',
+          text: '已下单',
           status: 'Default',
         },
         1: {
-          text: '运行中',
+          text: '未审核',
           status: 'Processing',
         },
         2: {
-          text: '已上线',
+          text: '已审核',
           status: 'Success',
         },
         3: {
-          text: '异常',
+          text: '订单作废',
           status: 'Error',
         },
       },
     },
     {
-      title: '上次调度时间',
+      title: '下单时间',
+      dataIndex: 'createdAt',
+      hideInSearch: true,
+      valueType:'dateTime'
+    },
+    {
+      title: '审核时间',
       dataIndex: 'updatedAt',
-      sorter: true,
-      valueType: 'dateTime',
+      hideInSearch: true,
+      valueType:'dateTime'
+    },
+    {
+      title: '根据时间段搜索',
+      dataIndex: 'search_id',
+      hideInTable:true,
+      valueType:'dateRange'
     },
     {
       title: '操作',
@@ -145,12 +161,14 @@ const TableList = () => {
   return (
     <PageHeaderWrapper>
       <ProTable
-        headerTitle="查询表格"
+        headerTitle="订单列表"
         actionRef={actionRef}
         rowKey="key"
+        searchText="Halo!"
+        resetText="点错了，从来"
         toolBarRender={(action, { selectedRows }) => [
           <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
-            新建
+            下单
           </Button>,
           selectedRows && selectedRows.length > 0 && (
             <Dropdown
@@ -185,9 +203,9 @@ const TableList = () => {
             >
               {selectedRowKeys.length}
             </a>{' '}
-            项&nbsp;&nbsp;
+            单&nbsp;&nbsp;
             <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
+              金额总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
             </span>
           </div>
         )}
