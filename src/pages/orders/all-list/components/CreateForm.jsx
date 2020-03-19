@@ -5,8 +5,7 @@ const FormItem = Form.Item;
 
 const CreateForm = props => {
   const [form] = Form.useForm();
-  const { modalVisible, onSubmit: handleAdd, onCancel } = props;
-
+  const { modalVisible, onSubmit: handleAdd, onCancel,handleButtonLoading } = props;
   const okHandle = async () => {
     const fieldsValue = await form.validateFields();
     form.resetFields();

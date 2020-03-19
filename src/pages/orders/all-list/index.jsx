@@ -6,6 +6,11 @@ import ProTable from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 import { queryRule, updateRule, addRule, removeRule } from './service';
+
+const hanldeButtonLoading = async fields =>{
+    alert('dialog');
+};
+
 /**
  * 添加节点
  * @param fields
@@ -78,6 +83,10 @@ const TableList = () => {
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
   const [stepFormValues, setStepFormValues] = useState({});
   const actionRef = useRef();
+  const state = {
+    loading: false,
+    iconLoading: false,
+  };
   const columns = [
     {
       title: '订单ID',
@@ -167,7 +176,7 @@ const TableList = () => {
         searchText="Halo!"
         resetText="点错了，从来"
         toolBarRender={(action, { selectedRows }) => [
-          <Button icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
+          <Button loading={state.iconLoading} icon={<PlusOutlined />} type="primary" onClick={() => handleModalVisible(true)}>
             下单
           </Button>,
           selectedRows && selectedRows.length > 0 && (
@@ -216,7 +225,7 @@ const TableList = () => {
       <CreateForm
         onSubmit={async value => {
           const success = await handleAdd(value);
-
+          await hanldeButtonLoading();
           if (success) {
             handleModalVisible(false);
 
